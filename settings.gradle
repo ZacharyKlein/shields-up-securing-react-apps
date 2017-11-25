@@ -1,0 +1,5 @@
+include 'jwtsecuritydemo:server',
+	'jwtsecuritydemo:client', 
+	'auth0securitydemo',
+    'roleroutingdemo',
+    'xssdemo'
