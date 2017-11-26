@@ -1,0 +1,7 @@
+import demo.Vehicle
+
+model {
+    List<Vehicle> vehicleList
+}
+
+json tmpl.vehicle(vehicleList)
