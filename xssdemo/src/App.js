@@ -7,6 +7,7 @@ import {
 import SettingInnerHtml from './SettingInnerHtml';
 import InjectableAttributes from "./InjectableAttributes";
 import LocalStorageFetch from "./LocalStorageFetch";
+import Home from "./Home";
 
 class App extends Component {
   render() {
@@ -27,7 +28,7 @@ class App extends Component {
           </nav>
 
           <div style={{float: 'right'}}>
-            <Route path="/" exact component={() => <div><h2>Home</h2></div>}/>
+            <Route path="/" exact component={Home}/>
             <Route path="/inner" component={SettingInnerHtml}/>
             <Route path="/inject" component={InjectableAttributes}/>
             <Route path="/localstorage" component={LocalStorageFetch}/>
