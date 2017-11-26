@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { Grid } from 'react-bootstrap';
-import AppNav from './AppNav';
-
-import grailsLogo from './images/grails-cupsonly-logo-white.svg';
-import reactLogo from './images/logo.svg';
-import { SERVER_URL, CLIENT_VERSION, REACT_VERSION } from './config';
+import React, {Component} from 'react';
+import {Grid} from 'react-bootstrap';
 import 'whatwg-fetch';
+import Vehicles from "./Vehicles";
+import {SERVER_URL} from "./config";
+import AddVehicleForm from "./AddVehicleForm";
 
 class App extends Component {
 
@@ -13,60 +11,57 @@ class App extends Component {
     super();
 
     this.state = {
-      serverInfo: {},
-      clientInfo: {
-        version: CLIENT_VERSION,
-        react: REACT_VERSION
-      }
+      vehicles: [],
+      makes: [],
+      models: [],
+      drivers: []
     }
   }
 
-  componentDidMount() {
-    fetch(SERVER_URL + '/application')
-      .then(r => r.json())
-      .then(json => this.setState({serverInfo: json}))
-      .catch(error => console.error('Error connecting to server: ' + error));
 
+  componentDidMount() {
+    fetch(`${SERVER_URL}/vehicle`)
+      .then(r => r.json())
+      .then(json => this.setState({vehicles: json}))
+      .catch(error => console.error('Error retrieving vehicles: ' + error));
+
+    fetch(`${SERVER_URL}/make`)
+      .then(r => r.json())
+      .then(json => this.setState({makes: json}))
+      .catch(error => console.error('Error retrieving makes: ' + error));
+
+    fetch(`${SERVER_URL}/model`)
+      .then(r => r.json())
+      .then(json => this.setState({models: json}))
+      .catch(error => console.error('Error retrieving models ' + error));
+
+    fetch(`${SERVER_URL}/driver`)
+      .then(r => r.json())
+      .then(json => this.setState({drivers: json}))
+      .catch(error => console.error('Error retrieving drivers: ' + error));
   }
 
+  submitNewVehicle = (vehicle) => {
+    fetch(`${SERVER_URL}/vehicle`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(vehicle)
+    }).then(r => r.json())
+      .then(json => {
+        let vehicles = this.state.vehicles;
+        vehicles.push(json);
+        this.setState({vehicles});
+      })
+      .catch(ex => console.error('Unable to save vehicle', ex));
+  };
+
   render() {
-    const serverInfo = this.state.serverInfo;
-    const clientInfo = this.state.clientInfo;
+    const {vehicles, makes, models, drivers} = this.state;
 
-    return (
-      <div>
-        <AppNav serverInfo={serverInfo} clientInfo={clientInfo}/>
-        <div className="grails-logo-container">
-          <img className="grails-logo" src={grailsLogo} alt="Grails" />
-          <span className="plus-logo">+</span>
-          <img className="hero-logo" src={reactLogo} alt="React" />
-        </div>
-
-        <Grid>
-          <div id="content">
-            <section className="row colset-2-its">
-              <h1 style={{textAlign: 'center'}}>Welcome to Grails</h1>
-              <br/>
-              <p>
-                Congratulations, you have successfully started your Grails & React application! While in development mode, changes will be loaded automatically when you edit your React app, without even refreshing the page.
-                Below is a list of controllers that are currently deployed in
-                this application, click on each to execute its default action:
-              </p>
-
-              <div id="controllers" role="navigation">
-                <h2>Available Controllers:</h2>
-                <ul>
-                  {serverInfo.controllers ? serverInfo.controllers.map(controller => {
-                    return <li key={controller.name}><a href={SERVER_URL + controller.logicalPropertyName}>{ controller.name }</a></li>;
-                  }) : null }
-                </ul>
-              </div>
-            </section>
-
-          </div>
-        </Grid>
-      </div>
-    );
+    return <div>
+      <AddVehicleForm onSubmit={this.submitNewVehicle} makes={makes} models={models} drivers={drivers}/>
+      <Vehicles vehicles={vehicles} />
+    </div>;
   }
 }
 
