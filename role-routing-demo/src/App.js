@@ -36,7 +36,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App" style={{margin: '0 auto', width: '80%'}}>
-          <header>truetruetruetruef
+          <header>
             <h1>Role-Based Routing</h1>
             <p>Currently logged in: <strong>{loggedIn ? 'yes' : 'no'}</strong></p>
             <p>Has Role: <strong>{user.role ? user.role : 'none'}</strong></p>
