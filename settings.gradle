@@ -1,5 +1,7 @@
-include 'jwtsecuritydemo:server',
-	'jwtsecuritydemo:client', 
-	'auth0securitydemo',
-    'roleroutingdemo',
-    'xssdemo'
+include 'jwt-security-demo:server',
+        'jwt-security-demo:client',
+        'grails-react-okta-demo:server',
+        'grails-react-okta-demo:client',
+        'auth0-sample-project-01-login',
+        'role-routing-demo',
+        'xss-demo'
