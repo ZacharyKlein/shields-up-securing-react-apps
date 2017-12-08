@@ -30,13 +30,13 @@ class App extends Component {
 
   render() {
     const {user, loggedIn} = this.state;
-    const AdminRole = Authorized(['admin'], user);
-    const UserRole = Authorized(['user', 'admin'], user);
+    const withAdminRole = Authorized(['admin'], user);
+    const withUserRole = Authorized(['user', 'admin'], user);
 
     return (
       <Router>
         <div className="App" style={{margin: '0 auto', width: '80%'}}>
-          <header>
+          <header>truetruetruetruef
             <h1>Role-Based Routing</h1>
             <p>Currently logged in: <strong>{loggedIn ? 'yes' : 'no'}</strong></p>
             <p>Has Role: <strong>{user.role ? user.role : 'none'}</strong></p>
@@ -48,8 +48,8 @@ class App extends Component {
             <Route path="/" exact component={Home}/>
             <Route path="/login" render={() => <Login loginUser={this.loginUser} loginAdmin={this.loginAdmin} loggedIn={loggedIn}/>}/>
             <Route path="/public" component={Public}/>
-            <Route path="/restricted" component={UserRole(Restricted)}/>
-            <Route path="/admin" component={AdminRole(Admin)}/>
+            <Route path="/restricted" component={withUserRole(Restricted)}/>
+            <Route path="/admin" component={withAdminRole(Admin)}/>
           </div>
         </div>
       </Router>

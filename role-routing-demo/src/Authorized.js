@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 
 const Authorized = (allowedRoles, user) => {
-   return (WrappedComponent) => {
-    return class WithAuthorization extends Component {
 
+   return (WrappedComponent) => {
+
+    return class WithAuthorization extends Component {
       render() {
         const {role} = user;
         if (allowedRoles.includes(role)) {
@@ -14,7 +15,6 @@ const Authorized = (allowedRoles, user) => {
       }
     }
   }
-};
-
+}
 
 export default Authorized;
