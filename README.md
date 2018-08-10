@@ -2,12 +2,12 @@
 Sample app/s for MidwestJS 2018
 
 
-## Usage
+## XSS-Demo
+ - Run `npm install` & `npm start` (`yarn` also supported)
 
- - `cd` into each directory. 
- - If a `server` directory is present, run `./gradlew server:bootRun` to start up the backend. 
- - In the `client` directory (or propject directory if no `server` & `client`). run `npm install` & `npm start` (`yarn` also supported)
 
+## Role-Routing-Demo
+ - Run `npm install` & `npm start` (`yarn` also supported)
 
 
 ### JWT-Security-Demo
