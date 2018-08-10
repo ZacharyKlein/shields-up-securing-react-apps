@@ -1,5 +1,4 @@
 include 'jwt-security-demo:server',
         'jwt-security-demo:client',
-        'auth0-sample-project-01-login',
         'role-routing-demo',
         'xss-demo'
