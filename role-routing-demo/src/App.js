@@ -3,13 +3,13 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
-import Home from "./Home";
-import Public from "./Public";
-import Restricted from "./Restricted";
-import Admin from "./Admin";
-import Login from "./Login";
-import Authorized from "./Authorized";
-import NavBar from "./NavBar";
+import Home from "./pages/Home";
+import Public from "./pages/Public";
+import Restricted from "./pages/Restricted";
+import Admin from "./pages/Admin";
+import Login from "./pages/Login";
+import Authorized from "./secure/Authorized";
+import NavBar from "./layout/NavBar";
 
 class App extends Component {
 
