@@ -1,5 +1,5 @@
 # shields-up-securing-react-apps
-Sample app/s for RichWebExperience 2017
+Sample app/s for MidwestJS 2018
 
 
 ## Usage
